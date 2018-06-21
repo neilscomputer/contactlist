@@ -15,11 +15,13 @@ plugins {
 }
 
 // Define the main class for the application
-mainClassName = 'App'
+mainClassName = 'edu.mills.contactlist.ContactListApp'
 
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
+    compile 'com.opencsv:opencsv:4.0'
+    compile 'commons-cli:commons-cli:1.4'
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
