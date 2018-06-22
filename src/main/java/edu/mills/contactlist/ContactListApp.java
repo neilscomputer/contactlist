@@ -38,6 +38,34 @@ public class ContactListApp {
 
     // Read the input.
     storage.read(cmd.getOptionValue("inputfile"), contactList);
+
+    // Now actually do whatever work was asked.
+    if (cmd.hasOption("find_name")) {
+      Contact contact = contactList.findContactByName(cmd.getOptionValue("find_name"));
+      if (contact != null) {
+        System.out.println(contact);
+      }
+    }
+
+    if (cmd.hasOption("find_number")) {
+      Contact contact = contactList.findContactByPhoneNumber(cmd.getOptionValue("find_number"));
+      if (contact != null) {
+        System.out.println(contact);
+      }
+    }
+
+    if (cmd.hasOption("delete")) {
+      Contact contact = contactList.findContactByName(cmd.getOptionValue("delete"));
+      if (contact != null) {
+        contactList.deleteContact(contact);
+      }
+    }
+
+    if (cmd.hasOption("print_contacts")) {
+      for (Contact contact : contactList) {
+        System.out.println(contact.toCsvString());
+      }
+    }
   }
 
   /**
@@ -54,6 +82,10 @@ public class ContactListApp {
     options.addOption("help", false, "Print help and exit");
     options.addOption("inputfile", true, "Input file to be read");
     options.addOption("impl", true, "Implementation of ContactList to use");
+    options.addOption("find_name", true, "Find a contact by name");
+    options.addOption("find_number", true, "Find a contact by number");
+    options.addOption("delete", true, "Delete the named contact");
+    options.addOption("print_contacts", false, "Print all contacts");
 
     CommandLine cmd = new DefaultParser().parse(options, args);
     if (cmd.hasOption("help") || !cmd.hasOption("impl")) {

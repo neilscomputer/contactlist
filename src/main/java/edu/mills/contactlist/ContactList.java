@@ -2,7 +2,7 @@ package edu.mills.contactlist;
 
 import java.util.Iterator;
 
-public interface ContactList {
+public interface ContactList extends Iterable<Contact> {
   void addContact(Contact contact);
   Contact findContactByName(String name);
   Contact findContactByPhoneNumber(String phoneNumber);

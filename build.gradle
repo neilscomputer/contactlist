@@ -17,6 +17,12 @@ plugins {
 // Define the main class for the application
 mainClassName = 'edu.mills.contactlist.ContactListApp'
 
+jar {
+  manifest {
+    attributes 'Main-Class': 'edu.mills.contactlist.ContactListApp'
+  }
+}
+
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
